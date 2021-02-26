@@ -1,0 +1,200 @@
+const Discord = require('discord.js');
+const client = new Discord.Client();
+var firebase = require('firebase');
+var rlrl = [];
+var rlcs = [];
+var cscs = [];
+
+// Initialize Firebase
+var config = {
+    apiKey: "AIzaSyD4Tag5MZrLJUgwwt6FY2OsGRgYvV7aZnE",
+    authDomain: "crosstrade-a0b8d.firebaseapp.com",
+    databaseURL: "https://crosstrade-a0b8d-default-rtdb.firebaseio.com",
+    projectId: "crosstrade-a0b8d",
+    storageBucket: "crosstrade-a0b8d.appspot.com",
+    messagingSenderId: "106183571870"
+};
+
+firebase.initializeApp(config);
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+// var timeStamp = new Date().toISOString();
+// timeStamp = timeStamp.substring(0,timeStamp.indexOf(".")).replace("T"," ");
+// console.log(timeStamp);
+
+client.once('ready', () => {
+    console.log('Ready!');
+});
+
+client.login(process.env.token);
+//client.login('ODA5ODQ5OTEwMTczMTA2MTk4.YCbFgA.VABr7ixoot15ciP4vQHcHwlJxkU');
+
+client.on('message', async message => {
+    var tempMessage = message.content.toLowerCase();
+    if ((tempMessage.includes("[h]")) && (tempMessage.includes("[w]")) || (tempMessage.includes("(h)")) && (tempMessage.includes("(w)"))) {
+
+        var message = message.replace("`","");
+        var messages = message.content.toLowerCase().split("\n");
+        var messageAuthor = message.author.username + "#" + message.author.discriminator;
+        var steamName = "";
+        var serverId = message.guild.id;
+        var serverName = message.guild.name;
+        var channelId = message.channel.id;
+        var channelName = message.channel.name;
+
+//        console.log(message.channel)
+
+        if (serverName == "RLCS.TRADE") {
+
+            if (channelName == "pc_rl_to_rl") {
+                var hasGame = "RL";
+                var wantGame = "RL";
+            }
+            if (channelName == "pc_rl_to_cs") {
+                var hasGame = "RL";
+                var wantGame = "CS";
+            }
+            if (channelName == "pc_cs_to_cs") {
+                var hasGame = "CS";
+                var wantGame = "CS";
+            }
+
+            var discordURL = "'https://discord.gg/vYyJnSrntZ'";
+            var discordServer = "RLCS.TRADE";
+            var serverLogo = "/static/rlcsLogo.png"
+
+        };
+
+        if (String(serverId) == "786446233555566593") {
+
+            if (String(channelId) == "786455732711063552") {
+                var hasGame = "RL";
+                var wantGame = "RL";
+            }
+
+            var discordURL = "'https://discord.gg/QKxsVtNTWZ'";
+            var discordServer = "Rocketverse";
+            var serverLogo = "/static/rocketverselogo.png"
+
+        };	
+
+        if (String(serverId)  == "562290964639776815") {
+
+            if (String(channelId) == "797607934170628116") {
+                var hasGame = "RL";
+                var wantGame = "RL";
+            }
+            if (String(channelId) == "807792760982732831") {
+                var hasGame = "RL";
+                var wantGame = "CS";
+            }
+
+            var discordURL = "'https://discord.gg/hn96NMrdQP'";
+            var discordServer = "Rocket Traders";
+            var serverLogo = "/static/rockettraderslogo.png"
+
+        };
+
+        if (String(serverId)  == "247628906914512896") {
+
+            if (String(channelId) == "249642821047418881") {
+                var hasGame = "RL";
+                var wantGame = "RL";
+            }
+            if (String(channelId) == "414397169580113920") {
+                var hasGame = "RL";
+                var wantGame = "CS";
+            }
+
+            var discordURL = "'https://discord.gg/trade'";
+            var discordServer = "Rocket Planet";
+            var serverLogo = "/static/rocketplanetlogo.png"
+        };
+
+        var i;
+        for (i = 0; i < messages.length; i++) {
+            if (messages[i].includes("[h]")) {
+                try {
+                    var currentMessage = messages[i];
+                    currentMessage = currentMessage.replace("[h]", "").split("[w]");
+                    var haveItem = currentMessage[0].trim();
+                    var wantItem = currentMessage[1].trim();
+                } catch {
+                    //pass
+                }
+            } else if (messages[i].includes("(h)")) {
+                try {
+                    var currentMessage = messages[i];
+                    currentMessage = currentMessage.replace("(h)", "").split("(w)");
+                    var haveItem = currentMessage[0].trim();
+                    var wantItem = currentMessage[1].trim();
+                } catch {
+                    //pass
+                }
+            } else {
+                continue;
+            }
+
+            var timeStamp = new Date().toISOString();
+            // timeStamp = timeStamp.substring(0, timeStamp.indexOf(".")).replace("T", " ");
+            // console.log(timeStamp);
+
+            data = messageAuthor + "▓■⁰≙⁰■▓" + haveItem + "▓■⁰≙⁰■▓" + wantItem + "▓■⁰≙⁰■▓" + timeStamp + "▓■⁰≙⁰■▓" + steamName + "▓■⁰≙⁰■▓" + hasGame + "▓■⁰≙⁰■▓" + wantGame + "▓■⁰≙⁰■▓" + discordURL + "▓■⁰≙⁰■▓" + discordServer + "▓■⁰≙⁰■▓" + serverLogo;
+
+            // console.log(data);
+            // await new Promise(resolve => setTimeout(resolve, 1000));
+
+            if (hasGame == "RL" && wantGame == "RL") {
+//                 rlrl.push(data);
+                var myDataRef = firebase.database().ref('RL-RL');
+                myDataRef.push(data);
+            }
+            if (hasGame == "RL" && wantGame == "CS") {
+//                 rlcs.push(data);
+                var myDataRef = firebase.database().ref('RL-CS');
+                myDataRef.push(data);
+            }
+            if (hasGame == "CS" && wantGame == "CS") {
+//                 cscs.push(data);
+                var myDataRef = firebase.database().ref('CS-CS');
+                myDataRef.push(data);
+            }
+            // console.log(fruits.length);
+
+//             if (rlrl.length == 10) {
+//                 var uploadrlrl = rlrl;
+//                 rlrl = [];
+//                 var j;
+//                 for (j = 0; j < uploadrlrl.length; j++) {
+//                     var myDataRef = firebase.database().ref('RL-RL');
+//                     myDataRef.push(uploadrlrl[j]);
+//                     await sleep(500);
+//                 }
+//             }
+//             if (rlcs.length == 10) {
+//                 var uploadrlcs = rlcs;
+//                 rlcs = [];
+//                 var j;
+//                 for (j = 0; j < uploadrlcs.length; j++) {
+//                     var myDataRef = firebase.database().ref('RL-CS');
+//                     myDataRef.push(uploadrlcs[j]);
+//                     await sleep(500);
+//                 }
+//             }
+//             if (cscs.length == 10) {
+//                 var uploadcscs = cscs;
+//                 cscs = [];
+//                 var j;
+//                 for (j = 0; j < uploadcscs.length; j++) {
+//                     var myDataRef = firebase.database().ref('CS-CS');
+//                     myDataRef.push(uploadcscs[j]);
+//                     await sleep(500);
+//                 }
+//             }
+        }
+
+    }
+});
