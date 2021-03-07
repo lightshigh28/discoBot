@@ -32,17 +32,17 @@ function sleep(ms) {
 // 	});
 // });
 
-setInterval(async function () {
-	var ref = firebase.database().ref('RL-RL');
-	var now = Date.now();
-	var cutoff = now - 24 * 60 * 60 * 1000;
-	var old = ref.orderByChild('TimeStamp').endAt(cutoff).limitToLast(1);
-	old.on('child_added', function(snapshot) {
-		console.log(1)
-		snapshot.ref.remove();
-	});
-console.log("Removed")
-}, 10 * 60 * 1000); 
+// setInterval(async function () {
+// 	var ref = firebase.database().ref('RL-RL');
+// 	var now = Date.now();
+// 	var cutoff = now - 24 * 60 * 60 * 1000;
+// 	var old = ref.orderByChild('TimeStamp').endAt(cutoff).limitToLast(1);
+// 	old.on('child_added', function(snapshot) {
+// 		console.log(1)
+// 		snapshot.ref.remove();
+// 	});
+// console.log("Removed")
+// }, 10 * 60 * 1000); 
 
 
 client.once('ready', () => {
