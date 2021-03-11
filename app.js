@@ -24,25 +24,44 @@ function sleep(ms) {
 	return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+
+var newTime = new Date().getTime()  - 150 * 60000;
+
+
+// var rlrl = firebase.database().ref('RL-RL');
+// console.log(firebase.database().ref('RL-RL').remove())
+// rlrl.orderByChild('TimeStamp').startAt(newTime).on('child_added', function(snapshot) {
+//     var trade = snapshot.val();
+// 	console.log('1')
+// 	snapshot.
+//     // if (trade.TimeStamp)
+// });
+
+
+
+
+
 ////////////////////////////////////	DELETE	//////////////////////////////
 // var bigtits = firebase.database().ref("RL-RL");
 // bigtits.once('value', function(snapshot) {
 // 	snapshot.forEach(function(childSnapshot) {
+// 		console.log(1)
 // 		bigtits.child(childSnapshot.key).remove();
 // 	});
 // });
 
 // setInterval(async function () {
+
 // 	var ref = firebase.database().ref('RL-RL');
 // 	var now = Date.now();
-// 	var cutoff = now - 24 * 60 * 60 * 1000;
+// 	var cutoff = now - 93 * 60 * 60 * 1000;
 // 	var old = ref.orderByChild('TimeStamp').endAt(cutoff).limitToLast(1);
 // 	old.on('child_added', function(snapshot) {
 // 		console.log(1)
 // 		snapshot.ref.remove();
 // 	});
 // console.log("Removed")
-// }, 10 * 60 * 1000); 
+// }, 5 * 1000); 
 
 
 client.once('ready', () => {
@@ -219,7 +238,7 @@ client.on('message', async message => {
 
 		var gamesOptions = ["RL", "CS", "OG", "CASH"];
 		if (gamesOptions.includes(hasGame) && gamesOptions.includes(wantGame)) {
-
+			var timeStamp = new Date().getTime();
 			var i;
 			for (i = 0; i < messages.length; i++) {
 
@@ -231,6 +250,7 @@ client.on('message', async message => {
 						currentMessage = currentMessage.replace("[h]", "").split("[w]");
 						var haveItem = currentMessage[0].trim();
 						var wantItem = currentMessage[1].trim();
+						checkHashUpload(messageAuthor, haveItem, wantItem, timeStamp, steamName, hasGame, wantGame, discordURL, discordServer, serverLogo)
 					} catch {
 						continue;
 					}
@@ -241,6 +261,7 @@ client.on('message', async message => {
 						currentMessage = currentMessage.replace("(h)", "").split("(w)");
 						var haveItem = currentMessage[0].trim();
 						var wantItem = currentMessage[1].trim();
+						checkHashUpload(messageAuthor, haveItem, wantItem, timeStamp, steamName, hasGame, wantGame, discordURL, discordServer, serverLogo)
 					} catch {
 						continue;
 					}
@@ -251,137 +272,230 @@ client.on('message', async message => {
 						currentMessage = currentMessage.replace(":BTH:", "").split(":BTW:");
 						var haveItem = currentMessage[0].trim();
 						var wantItem = currentMessage[1].trim();
+						checkHashUpload(messageAuthor, haveItem, wantItem, timeStamp, steamName, hasGame, wantGame, discordURL, discordServer, serverLogo)
 					} catch {
 						continue;
 					}
 				} else {
 					continue;
 				}
-				counter1 = counter1 + 1;
+				
 
-				var timeStamp = new Date().getTime();
+				// // data = messageAuthor + "▓■⁰≙⁰■▓" + haveItem + "▓■⁰≙⁰■▓" + wantItem + "▓■⁰≙⁰■▓" + timeStamp + "▓■⁰≙⁰■▓" + steamName + "▓■⁰≙⁰■▓" + hasGame + "▓■⁰≙⁰■▓" + wantGame + "▓■⁰≙⁰■▓" + discordURL + "▓■⁰≙⁰■▓" + discordServer + "▓■⁰≙⁰■▓" + serverLogo;
 
-				// data = messageAuthor + "▓■⁰≙⁰■▓" + haveItem + "▓■⁰≙⁰■▓" + wantItem + "▓■⁰≙⁰■▓" + timeStamp + "▓■⁰≙⁰■▓" + steamName + "▓■⁰≙⁰■▓" + hasGame + "▓■⁰≙⁰■▓" + wantGame + "▓■⁰≙⁰■▓" + discordURL + "▓■⁰≙⁰■▓" + discordServer + "▓■⁰≙⁰■▓" + serverLogo;
-
-				var checkHash = haveItem + ' ' + wantItem + ' ' + messageAuthor;
-				var hash = crypto.createHash('md5').update(checkHash).digest('hex');
-				if (allHashes.indexOf(hash) !== -1){
-					// console.log("Exists ");
-					counter2 = counter2 + 1;
-					continue;
-				}
-				else{
-					allHashes.push(hash);
-				}
+				// var checkHash = haveItem + ' ' + wantItem + ' ' + messageAuthor;
+				// var hash = crypto.createHash('md5').update(checkHash).digest('hex');
+				// if (allHashes.indexOf(hash) !== -1){
+				// 	// console.log("Exists ");
+				// 	counter2 = counter2 + 1;
+				// 	continue;
+				// }
+				// else{
+				// 	allHashes.push(hash);
+				// }
 
 				
-				data = {
-					Discord : messageAuthor,
-					Has : haveItem,
-					Want : wantItem,
-					TimeStamp : timeStamp,
-					Steam : steamName,
-					HasGame : hasGame,
-					WantGame : wantGame,
-					DiscordURL : discordURL,
-					DiscordServer : discordServer,
-					ServerLogo : serverLogo
-				}
+				// data = {
+				// 	Discord : messageAuthor,
+				// 	Has : haveItem,
+				// 	Want : wantItem,
+				// 	TimeStamp : timeStamp,
+				// 	Steam : steamName,
+				// 	HasGame : hasGame,
+				// 	WantGame : wantGame,
+				// 	DiscordURL : discordURL,
+				// 	DiscordServer : discordServer,
+				// 	ServerLogo : serverLogo
+				// }
 
-				await new Promise(resolve => setTimeout(resolve, 1000));
+				// console.log(data)
 
-				if (hasGame == "RL" && wantGame == "RL") {
-					var myDataRef = firebase.database().ref('RL-RL');
-					myDataRef.push(data);
-				}
-				if (hasGame == "RL" && wantGame == "CS") {
-					var myDataRef = firebase.database().ref('RL-CS');
-					myDataRef.push(data);
-				}
-				if (hasGame == "RL" && wantGame == "OG") {
-					var myDataRef = firebase.database().ref('RL-OG');
-					myDataRef.push(data);
-				}
-				if (hasGame == "RL" && wantGame == "CASH") {
-					var myDataRef = firebase.database().ref('RL-CASH');
-					myDataRef.push(data);
-				}
-				if (hasGame == "CS" && wantGame == "CS") {
-					var myDataRef = firebase.database().ref('CS-CS');
-					myDataRef.push(data);
-				}
-				if (hasGame == "CS" && wantGame == "OG") {
-					var myDataRef = firebase.database().ref('CS-OG');
-					myDataRef.push(data);
-				}
-				if (hasGame == "CS" && wantGame == "CASH") {
-					var myDataRef = firebase.database().ref('CS-CASH');
-					myDataRef.push(data);
-				}
-				if (hasGame == "OG" && wantGame == "OG") {
-					var myDataRef = firebase.database().ref('OG-OG');
-					myDataRef.push(data);
-				}
-				if (hasGame == "OG" && wantGame == "CASH") {
-					var myDataRef = firebase.database().ref('OG-CASH');
-					myDataRef.push(data);
-				}
-				counter3 = counter3 + 1;
-				console.log("ALL- " + counter1 + " EXISTED- " + counter2 + " ADDED- " + counter3 + "   " + ((new Date() - startTime)/(1000 * 60)).toFixed(2));
-				// DELAY LOGIC #USELESS
-				// if (rlrl.length == 10) {
-				//     var uploadrlrl = rlrl;
-				//     rlrl = [];
-				//     var j;
-				//     for (j = 0; j < uploadrlrl.length; j++) {
-				//         var myDataRef = firebase.database().ref('RL-RL');
-				//         myDataRef.push(uploadrlrl[j]);
-				//         await sleep(500);
-				//     }
+				// // await new Promise(resolve => setTimeout(resolve, 1000));
+
+				// if (hasGame == "RL" && wantGame == "RL") {
+				// 	var myDataRef = firebase.database().ref('RL-RL');
+				// 	myDataRef.push(data);
 				// }
-				// if (rlcs.length == 10) {
-				//     var uploadrlcs = rlcs;
-				//     rlcs = [];
-				//     var j;
-				//     for (j = 0; j < uploadrlcs.length; j++) {
-				//         var myDataRef = firebase.database().ref('RL-CS');
-				//         myDataRef.push(uploadrlcs[j]);
-				//         await sleep(500);
-				//     }
+				// if (hasGame == "RL" && wantGame == "CS") {
+				// 	var myDataRef = firebase.database().ref('RL-CS');
+				// 	myDataRef.push(data);
 				// }
-				// if (cscs.length == 10) {
-				//     var uploadcscs = cscs;
-				//     cscs = [];
-				//     var j;
-				//     for (j = 0; j < uploadcscs.length; j++) {
-				//         var myDataRef = firebase.database().ref('CS-CS');
-				//         myDataRef.push(uploadcscs[j]);
-				//         await sleep(500);
-				//     }
+				// if (hasGame == "RL" && wantGame == "OG") {
+				// 	var myDataRef = firebase.database().ref('RL-OG');
+				// 	myDataRef.push(data);
 				// }
+				// if (hasGame == "RL" && wantGame == "CASH") {
+				// 	var myDataRef = firebase.database().ref('RL-CASH');
+				// 	myDataRef.push(data);
+				// }
+				// if (hasGame == "CS" && wantGame == "CS") {
+				// 	var myDataRef = firebase.database().ref('CS-CS');
+				// 	myDataRef.push(data);
+				// }
+				// if (hasGame == "CS" && wantGame == "OG") {
+				// 	var myDataRef = firebase.database().ref('CS-OG');
+				// 	myDataRef.push(data);
+				// }
+				// if (hasGame == "CS" && wantGame == "CASH") {
+				// 	var myDataRef = firebase.database().ref('CS-CASH');
+				// 	myDataRef.push(data);
+				// }
+				// if (hasGame == "OG" && wantGame == "OG") {
+				// 	var myDataRef = firebase.database().ref('OG-OG');
+				// 	myDataRef.push(data);
+				// }
+				// if (hasGame == "OG" && wantGame == "CASH") {
+				// 	var myDataRef = firebase.database().ref('OG-CASH');
+				// 	myDataRef.push(data);
+				// }
+				// counter3 = counter3 + 1;
+				// console.log("ALL- " + counter1 + " EXISTED- " + counter2 + " ADDED- " + counter3 + "   " + ((new Date() - startTime)/(1000 * 60)).toFixed(2));
+
+
+				// // DELAY LOGIC #USELESS
+				// // if (rlrl.length == 10) {
+				// //     var uploadrlrl = rlrl;
+				// //     rlrl = [];
+				// //     var j;
+				// //     for (j = 0; j < uploadrlrl.length; j++) {
+				// //         var myDataRef = firebase.database().ref('RL-RL');
+				// //         myDataRef.push(uploadrlrl[j]);
+				// //         await sleep(500);
+				// //     }
+				// // }
+				// // if (rlcs.length == 10) {
+				// //     var uploadrlcs = rlcs;
+				// //     rlcs = [];
+				// //     var j;
+				// //     for (j = 0; j < uploadrlcs.length; j++) {
+				// //         var myDataRef = firebase.database().ref('RL-CS');
+				// //         myDataRef.push(uploadrlcs[j]);
+				// //         await sleep(500);
+				// //     }
+				// // }
+				// // if (cscs.length == 10) {
+				// //     var uploadcscs = cscs;
+				// //     cscs = [];
+				// //     var j;
+				// //     for (j = 0; j < uploadcscs.length; j++) {
+				// //         var myDataRef = firebase.database().ref('CS-CS');
+				// //         myDataRef.push(uploadcscs[j]);
+				// //         await sleep(500);
+				// //     }
+				// // }
 			}
 		}
     }
 });
 
 
-// setInterval(function () {
-// 	var pussylips = ['RL-RL','RL-CS','RL-OG','RL-CASH','CS-CS','CS-OG','CS-CASH','OG-OG','OG-CASH']
-// 	for (dicktip in pussylips){
-// 		var bigtits = firebase.database().ref(dicktip);
-// 		bigtits.once('value', function(snapshot) {
-// 			snapshot.forEach(function(childSnapshot) {
-// 				// var cumshot = childSnapshot.val(); 
-// 				// cumshot = cumshot.split('▓■⁰≙⁰■▓');
-// 				// let currentTime = new Date();
-// 				// let uploadTime = new Date(cumshot[3]);
-// 				// let hours = Math.floor((currentTime - uploadTime) / (1000 * 60 * 60));
-// 				// let days = Math.floor((currentTime - uploadTime) / (1000 * 60 * 60 * 24));
-// 				// if (days >= 1) {
-// 				bigtits.child(childSnapshot.key).remove();
-// 				// }
-// 			});
-// 		});
-// 	}
-// 	console.log("Removed")
-// }, 30 * 60 * 1000); 
+
+
+
+
+
+
+
+
+function checkHashUpload(messageAuthor, haveItem, wantItem, timeStamp, steamName, hasGame, wantGame, discordURL, discordServer, serverLogo){
+
+	counter1 = counter1 + 1
+	var checkHash = haveItem + ' ' + wantItem + ' ' + messageAuthor;
+	
+	var hash = crypto.createHash('md5').update(checkHash).digest('hex');
+	if (allHashes.indexOf(hash) !== -1){
+		// console.log("Exists ");
+		counter2 = counter2 + 1;
+	}
+	else{
+		allHashes.push(hash);
+		var timeStamp = new Date().getTime();
+		data = {
+			Discord : messageAuthor,
+			Has : haveItem,
+			Want : wantItem,
+			TimeStamp : timeStamp,
+			Steam : steamName,
+			HasGame : hasGame,
+			WantGame : wantGame,
+			DiscordURL : discordURL,
+			DiscordServer : discordServer,
+			ServerLogo : serverLogo
+		}
+
+		// await new Promise(resolve => setTimeout(resolve, 1000));
+
+		if (hasGame == "RL" && wantGame == "RL") {
+			var myDataRef = firebase.database().ref('RL-RL');
+			myDataRef.push(data);
+		}
+		if (hasGame == "RL" && wantGame == "CS") {
+			var myDataRef = firebase.database().ref('RL-CS');
+			myDataRef.push(data);
+		}
+		if (hasGame == "RL" && wantGame == "OG") {
+			var myDataRef = firebase.database().ref('RL-OG');
+			myDataRef.push(data);
+		}
+		if (hasGame == "RL" && wantGame == "CASH") {
+			var myDataRef = firebase.database().ref('RL-CASH');
+			myDataRef.push(data);
+		}
+		if (hasGame == "CS" && wantGame == "CS") {
+			var myDataRef = firebase.database().ref('CS-CS');
+			myDataRef.push(data);
+		}
+		if (hasGame == "CS" && wantGame == "OG") {
+			var myDataRef = firebase.database().ref('CS-OG');
+			myDataRef.push(data);
+		}
+		if (hasGame == "CS" && wantGame == "CASH") {
+			var myDataRef = firebase.database().ref('CS-CASH');
+			myDataRef.push(data);
+		}
+		if (hasGame == "OG" && wantGame == "OG") {
+			var myDataRef = firebase.database().ref('OG-OG');
+			myDataRef.push(data);
+		}
+		if (hasGame == "OG" && wantGame == "CASH") {
+			var myDataRef = firebase.database().ref('OG-CASH');
+			myDataRef.push(data);
+		}
+		counter3 = counter3 + 1;
+		console.log("ALL- " + counter1 + " EXISTED- " + counter2 + " ADDED- " + counter3 + "   " + ((new Date() - startTime)/(1000 * 60)).toFixed(2));
+		messageAuthor = null
+		haveItem = null
+		wantItem = null
+		timeStamp = null
+		steamName = null
+		hasGame = null
+		wantGame = null
+		discordURL = null
+		discordServer = null
+		serverLogo = null
+		
+	}
+}
+
+
+
+setInterval(function () {
+	var pussylips = ['RL-RL','RL-CS','RL-OG','RL-CASH','CS-CS','CS-OG','CS-CASH','OG-OG','OG-CASH']
+	for (dicktip in pussylips){
+		var bigtits = firebase.database().ref(dicktip);
+		bigtits.once('value', function(snapshot) {
+			snapshot.forEach(function(childSnapshot) {
+				// var cumshot = childSnapshot.val(); 
+				// cumshot = cumshot.split('▓■⁰≙⁰■▓');
+				// let currentTime = new Date();
+				// let uploadTime = new Date(cumshot[3]);
+				// let hours = Math.floor((currentTime - uploadTime) / (1000 * 60 * 60));
+				let days = Math.floor((currentTime - uploadTime) / (1000 * 60 * 60 * 24));
+				if (days >= 1) {
+					bigtits.child(childSnapshot.key).remove();
+				}
+			});
+		});
+	}
+	console.log("Removed")
+}, 30 * 60 * 1000); 
