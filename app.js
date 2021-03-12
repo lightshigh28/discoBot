@@ -424,6 +424,7 @@ function checkHashUpload(messageAuthor, haveItem, wantItem, timeStamp, steamName
 		}
 
 		// await new Promise(resolve => setTimeout(resolve, 1000));
+		await sleep(1000);
 
 		if (hasGame == "RL" && wantGame == "RL") {
 			var myDataRef = firebase.database().ref('RL-RL');
