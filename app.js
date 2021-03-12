@@ -423,57 +423,60 @@ function checkHashUpload(messageAuthor, haveItem, wantItem, timeStamp, steamName
 			ServerLogo : serverLogo
 		}
 
+		setTimeout(function()
+		{
+			if (hasGame == "RL" && wantGame == "RL") {
+				var myDataRef = firebase.database().ref('RL-RL');
+				myDataRef.push(data);
+			}
+			if (hasGame == "RL" && wantGame == "CS") {
+				var myDataRef = firebase.database().ref('RL-CS');
+				myDataRef.push(data);
+			}
+			if (hasGame == "RL" && wantGame == "OG") {
+				var myDataRef = firebase.database().ref('RL-OG');
+				myDataRef.push(data);
+			}
+			if (hasGame == "RL" && wantGame == "CASH") {
+				var myDataRef = firebase.database().ref('RL-CASH');
+				myDataRef.push(data);
+			}
+			if (hasGame == "CS" && wantGame == "CS") {
+				var myDataRef = firebase.database().ref('CS-CS');
+				myDataRef.push(data);
+			}
+			if (hasGame == "CS" && wantGame == "OG") {
+				var myDataRef = firebase.database().ref('CS-OG');
+				myDataRef.push(data);
+			}
+			if (hasGame == "CS" && wantGame == "CASH") {
+				var myDataRef = firebase.database().ref('CS-CASH');
+				myDataRef.push(data);
+			}
+			if (hasGame == "OG" && wantGame == "OG") {
+				var myDataRef = firebase.database().ref('OG-OG');
+				myDataRef.push(data);
+			}
+			if (hasGame == "OG" && wantGame == "CASH") {
+				var myDataRef = firebase.database().ref('OG-CASH');
+				myDataRef.push(data);
+			}
+			counter3 = counter3 + 1;
+			console.log("ALL- " + counter1 + " EXISTED- " + counter2 + " ADDED- " + counter3 + "   " + ((new Date() - startTime)/(1000 * 60)).toFixed(2));
+			messageAuthor = null
+			haveItem = null
+			wantItem = null
+			timeStamp = null
+			steamName = null
+			hasGame = null
+			wantGame = null
+			discordURL = null
+			discordServer = null
+			serverLogo = null
+		}, 1000);
 		// await new Promise(resolve => setTimeout(resolve, 1000));
-		await sleep(1000);
 
-		if (hasGame == "RL" && wantGame == "RL") {
-			var myDataRef = firebase.database().ref('RL-RL');
-			myDataRef.push(data);
-		}
-		if (hasGame == "RL" && wantGame == "CS") {
-			var myDataRef = firebase.database().ref('RL-CS');
-			myDataRef.push(data);
-		}
-		if (hasGame == "RL" && wantGame == "OG") {
-			var myDataRef = firebase.database().ref('RL-OG');
-			myDataRef.push(data);
-		}
-		if (hasGame == "RL" && wantGame == "CASH") {
-			var myDataRef = firebase.database().ref('RL-CASH');
-			myDataRef.push(data);
-		}
-		if (hasGame == "CS" && wantGame == "CS") {
-			var myDataRef = firebase.database().ref('CS-CS');
-			myDataRef.push(data);
-		}
-		if (hasGame == "CS" && wantGame == "OG") {
-			var myDataRef = firebase.database().ref('CS-OG');
-			myDataRef.push(data);
-		}
-		if (hasGame == "CS" && wantGame == "CASH") {
-			var myDataRef = firebase.database().ref('CS-CASH');
-			myDataRef.push(data);
-		}
-		if (hasGame == "OG" && wantGame == "OG") {
-			var myDataRef = firebase.database().ref('OG-OG');
-			myDataRef.push(data);
-		}
-		if (hasGame == "OG" && wantGame == "CASH") {
-			var myDataRef = firebase.database().ref('OG-CASH');
-			myDataRef.push(data);
-		}
-		counter3 = counter3 + 1;
-		console.log("ALL- " + counter1 + " EXISTED- " + counter2 + " ADDED- " + counter3 + "   " + ((new Date() - startTime)/(1000 * 60)).toFixed(2));
-		messageAuthor = null
-		haveItem = null
-		wantItem = null
-		timeStamp = null
-		steamName = null
-		hasGame = null
-		wantGame = null
-		discordURL = null
-		discordServer = null
-		serverLogo = null
+	
 		
 	}
 }
