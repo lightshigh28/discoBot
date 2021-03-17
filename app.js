@@ -407,18 +407,10 @@ client.on('message', async message => {
 });
 
 
-
-
-
-
-
-
-
-
 function checkHashUpload(messageAuthor, haveItem, wantItem, timeStamp, steamName, hasGame, wantGame, discordURL, discordServer, serverLogo){
 
 	console.log("Data from "+ discordServer + " for " + hasGame + wantGame + " in " + channelName + " by " + messageAuthor + " at "+ timeStamp + " recieved.");
-	counter1 = counter1 + 1
+	counter1 = counter1 + 1;
 	var checkHash = haveItem + ' ' + wantItem + ' ' + messageAuthor;
 	
 	var hash = crypto.createHash('md5').update(checkHash).digest('hex');
