@@ -81,6 +81,7 @@ client.on('message', async message => {
 		var serverName = message.guild.name;
 		var channelId = message.channel.id;
 		var channelName = message.channel.name;
+		
 
         //RLCS.TRADE
         if (serverName == "RLCS.TRADE") {
@@ -196,7 +197,7 @@ client.on('message', async message => {
         	// var ogcasharray =["565265486271479831"]
 			// var cashcasharray =["565268973453705241"]
 
-        	if (String(channelId) == "565265723258306580" || String(channelId) == "616324781645758497" || String(channelId) == "565265964799623177" || String(channelId) == "565266607295954994" || String(channelId) == "565266288751017996" || String(channelId) == "565268347185266710" || String(channelId) == "565268529683759115" || String(channelId) == "565266294279110676" || String(channelId) == "565266294279110676" || String(channelId) == "565268325613961226" || String(channelId) == "565266895691972637") {
+        	if (String(channelId) == "565265723258306580" || String(channelId) == "616324781645758497" || String(channelId) == "565265964799623177" || String(channelId) == "565266607295954994" || String(channelId) == "565266288751017996" || String(channelId) == "565268347185266710" || String(channelId) == "565268529683759115" || String(channelId) == "565266294279110676" || String(channelId) == "385973199294169088" || String(channelId) == "565268325613961226" || String(channelId) == "565266895691972637") {
         		var hasGame = "RL";
         		var wantGame = "RL";
         	}
@@ -416,6 +417,7 @@ client.on('message', async message => {
 
 function checkHashUpload(messageAuthor, haveItem, wantItem, timeStamp, steamName, hasGame, wantGame, discordURL, discordServer, serverLogo){
 
+	console.log("Data from "+ discordServer + " for " + hasGame + wantGame + " in " + channelName + " by " + messageAuthor + " at "+ timeStamp + " recieved.")
 	counter1 = counter1 + 1
 	var checkHash = haveItem + ' ' + wantItem + ' ' + messageAuthor;
 	
@@ -423,6 +425,7 @@ function checkHashUpload(messageAuthor, haveItem, wantItem, timeStamp, steamName
 	if (allHashes.indexOf(hash) !== -1){
 		// console.log("Exists ");
 		counter2 = counter2 + 1;
+		console.log("This entry already exists.")
 	}
 	else{
 		allHashes.push(hash);
@@ -481,8 +484,9 @@ function checkHashUpload(messageAuthor, haveItem, wantItem, timeStamp, steamName
 			var myDataRef = firebase.database().ref('CASH-CASH');
 			myDataRef.push(data);
 		}
+		console.log("This entry was added.")
 		counter3 = counter3 + 1;
-		console.log("ALL- " + counter1 + " EXISTED- " + counter2 + " ADDED- " + counter3 + "   " + ((new Date() - startTime)/(1000 * 60)).toFixed(2));
+		console.log("TOTAL ENTRIES: " + counter1 + " | ALREADY EXISTED: " + counter2 + " | NEWLY ADDED- " + counter3 + "   " + ((new Date() - startTime)/(1000 * 60)).toFixed(2));
 		messageAuthor = null
 		haveItem = null
 		wantItem = null
@@ -518,5 +522,5 @@ setInterval(function () {
 		// 	});
 		// });
 	}
-	console.log("Removed")
+	console.log("Removed All Data")
 }, 24 * 60 * 60 * 1000); 
