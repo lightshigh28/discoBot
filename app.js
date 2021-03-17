@@ -182,56 +182,57 @@ client.on('message', async message => {
         	var serverLogo = "/static/rocketplanetlogo.png"
         };
 
-        //Trade Central
+         //Trade Central
         if (String(serverId)  == "223259649967652887") {
-        	var rlrlarray =["565265723258306580","616324781645758497","565265964799623177","565266607295954994","565266288751017996","565268347185266710","565268529683759115","565266294279110676","385973199294169088","565268325613961226","565266895691972637"]
-        	var rlcsarray =["565265786051231751","565266456326176779"]
-        	var rlcasharray = ["565266849919402016"]
-        	var rlogarray =["565265786051231751"]
-        	var cscsarray =["565267476452081754","565267952086286336","565266493177331742","565267629892173855"]
-        	var cscasharray =["565267819323850752"]
-        	var csogarray = ["565266456326176779"]
-        	var ogogarray =["565269026331295787","565267106304622642","565268477481320469","565267563681153055","565265582283423744"]
-        	var ogcasharray =["565265486271479831"]
-			var cashcasharray =["565268973453705241"]
 
-        	if (rlrlarray.includes(String(channelId))) {
+        	// var rlrlarray =["565265723258306580","616324781645758497","565265964799623177","565266607295954994","565266288751017996","565268347185266710","565268529683759115","565266294279110676","385973199294169088","565268325613961226","565266895691972637"]
+        	// var rlcsarray =["565265786051231751","565266456326176779"]
+        	// var rlcasharray = ["565266849919402016"]
+        	// var rlogarray =["565265786051231751"]
+        	// var cscsarray =["565267476452081754","565267952086286336","565266493177331742","565267629892173855"]
+        	// var cscasharray =["565267819323850752"]
+        	// var csogarray = ["565266456326176779"]
+        	// var ogogarray =["565269026331295787","565267106304622642","565268477481320469","565267563681153055","565265582283423744"]
+        	// var ogcasharray =["565265486271479831"]
+			// var cashcasharray =["565268973453705241"]
+
+        	if (String(channelId) == "565265723258306580" || String(channelId) == "616324781645758497" || String(channelId) == "565265964799623177" || String(channelId) == "565266607295954994" || String(channelId) == "565266288751017996" || String(channelId) == "565268347185266710" || String(channelId) == "565268529683759115" || String(channelId) == "565266294279110676" || String(channelId) == "385973199294169088" || String(channelId) == "565268325613961226" || String(channelId) == "565266895691972637") {
         		var hasGame = "RL";
         		var wantGame = "RL";
         	}
-        	if (rlcsarray.includes(String(channelId))) {
+        	if (String(channelId) == "565265786051231751" || String(channelId) == "565266456326176779") {
         		var hasGame = "RL";
         		var wantGame = "CS";
         	}
-        	if (rlcasharray.includes(String(channelId))) {
+        	if (String(channelId) == "565266849919402016") {
         		var hasGame = "RL";
         		var wantGame = "CASH";
         	}
-        	if (rlogarray.includes(String(channelId))) {
+        	if (String(channelId) == "565265786051231751") {
         		var hasGame = "RL";
         		var wantGame = "OG";
         	}
-        	if (cscsarray.includes(String(channelId))) {
+        	if (String(channelId) == "565267476452081754" || String(channelId) == "565267952086286336" || String(channelId) == "565266493177331742" || String(channelId) == "565267629892173855") {
         		var hasGame = "CS";
         		var wantGame = "CS";
         	}
-        	if (cscasharray.includes(String(channelId))) {
+        	if (String(channelId) == "565267819323850752") {
         		var hasGame = "CS";
         		var wantGame = "CASH";
         	}
-        	if (csogarray.includes(String(channelId))) {
+        	if (String(channelId) == "565266456326176779") {
         		var hasGame = "CS";
         		var wantGame = "OG";
         	}
-        	if (ogogsharray.includes(String(channelId))) {
+        	if (String(channelId) == "565269026331295787" || String(channelId) == "565267106304622642" || String(channelId) == "565268477481320469" || String(channelId) == "565267563681153055" || String(channelId) == "565265582283423744") {
         		var hasGame = "OG";
         		var wantGame = "OG";
         	}
-        	if (ogcasharray.includes(String(channelId))) {
+        	if (String(channelId) == "565265486271479831") {
         		var hasGame = "OG";
         		var wantGame = "CASH";
         	}
-			if (cashcasharray.includes(String(channelId))) {
+			if (String(channelId) == "565268973453705241") {
 				var hasGame = "CASH";
 				var wantGame = "CASH";
 			}
@@ -476,6 +477,10 @@ function checkHashUpload(messageAuthor, haveItem, wantItem, timeStamp, steamName
 			var myDataRef = firebase.database().ref('OG-CASH');
 			myDataRef.push(data);
 		}
+		if (hasGame == "CASH" && wantGame == "CASH") {
+			var myDataRef = firebase.database().ref('CASH-CASH');
+			myDataRef.push(data);
+		}
 		counter3 = counter3 + 1;
 		console.log("ALL- " + counter1 + " EXISTED- " + counter2 + " ADDED- " + counter3 + "   " + ((new Date() - startTime)/(1000 * 60)).toFixed(2));
 		messageAuthor = null
@@ -495,7 +500,7 @@ function checkHashUpload(messageAuthor, haveItem, wantItem, timeStamp, steamName
 
 
 setInterval(function () {
-	var pussylips = ['RL-RL','RL-CS','RL-OG','RL-CASH','CS-CS','CS-OG','CS-CASH','OG-OG','OG-CASH','CASH-CASH']
+	var pussylips = ['RL-RL','RL-CS','RL-OG','RL-CASH','CS-CS','CS-OG','CS-CASH','OG-OG','OG-CASH','CASH-CASH','Chat']
 	for (dicktip in pussylips){
 		console.log(firebase.database().ref(dicktip).remove())
 		// var bigtits = firebase.database().ref(dicktip);
