@@ -504,7 +504,7 @@ function checkHashUpload(messageAuthor, haveItem, wantItem, timeStamp, steamName
 
 
 setInterval(function () {
-	var pussylips = ['RL-RL','RL-CS','RL-OG','RL-CASH','CS-CS','CS-OG','CS-CASH','OG-OG','OG-CASH','CASH-CASH']
+	var pussylips = ['RL-RL','RL-CS','RL-OG','RL-CASH','CS-CS','CS-OG','CS-CASH','OG-OG','OG-CASH','CASH-CASH','Chat']
 	for (dicktip in pussylips){
 		console.log(firebase.database().ref(dicktip).remove())
 		// var bigtits = firebase.database().ref(dicktip);
