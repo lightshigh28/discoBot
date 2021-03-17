@@ -417,7 +417,7 @@ client.on('message', async message => {
 
 function checkHashUpload(messageAuthor, haveItem, wantItem, timeStamp, steamName, hasGame, wantGame, discordURL, discordServer, serverLogo){
 
-	console.log("Data from "+ discordServer + " for " + hasGame + wantGame + " in " + channelName + " by " + messageAuthor + " at "+ timeStamp + " recieved.")
+	console.log("Data from "+ discordServer + " for " + hasGame + wantGame + " in " + channelName + " by " + messageAuthor + " at "+ timeStamp + " recieved.");
 	counter1 = counter1 + 1
 	var checkHash = haveItem + ' ' + wantItem + ' ' + messageAuthor;
 	
@@ -425,7 +425,7 @@ function checkHashUpload(messageAuthor, haveItem, wantItem, timeStamp, steamName
 	if (allHashes.indexOf(hash) !== -1){
 		// console.log("Exists ");
 		counter2 = counter2 + 1;
-		console.log("This entry already exists.")
+		console.log("This entry already exists.");
 	}
 	else{
 		allHashes.push(hash);
@@ -484,7 +484,7 @@ function checkHashUpload(messageAuthor, haveItem, wantItem, timeStamp, steamName
 			var myDataRef = firebase.database().ref('CASH-CASH');
 			myDataRef.push(data);
 		}
-		console.log("This entry was added.")
+		console.log("This entry was added.");
 		counter3 = counter3 + 1;
 		console.log("TOTAL ENTRIES: " + counter1 + " | ALREADY EXISTED: " + counter2 + " | NEWLY ADDED- " + counter3 + "   " + ((new Date() - startTime)/(1000 * 60)).toFixed(2));
 		messageAuthor = null
