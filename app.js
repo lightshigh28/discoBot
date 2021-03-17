@@ -417,11 +417,11 @@ client.on('message', async message => {
 function checkHashUpload(messageAuthor, haveItem, wantItem, timeStamp, steamName, hasGame, wantGame, discordURL, discordServer, serverLogo){
 
 	counter1 = counter1 + 1
-	var checkHash = haveItem + ' ' + wantItem + ' ' + messageAuthor;
+	var checkHash = discordServer + ' ' + haveItem + ' ' + wantItem + ' ' + messageAuthor;
 	
 	var hash = crypto.createHash('md5').update(checkHash).digest('hex');
 	if (allHashes.indexOf(hash) !== -1){
-		// console.log("Exists ");
+		console.log("Exists ");
 		counter2 = counter2 + 1;
 	}
 	else{
