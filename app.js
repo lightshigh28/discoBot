@@ -200,10 +200,6 @@ client.on('message', async message => {
         		var hasGame = "RL";
         		var wantGame = "RL";
         	}
-        	if (String(channelId) == "565265786051231751" || String(channelId) == "565266456326176779") {
-        		var hasGame = "RL";
-        		var wantGame = "CS";
-        	}
         	if (String(channelId) == "565266849919402016") {
         		var hasGame = "RL";
         		var wantGame = "CASH";
@@ -232,10 +228,14 @@ client.on('message', async message => {
         		var hasGame = "OG";
         		var wantGame = "CASH";
         	}
-			if (String(channelId) == "565268973453705241") {
-				var hasGame = "CASH";
-				var wantGame = "CASH";
-			}
+		if (String(channelId) == "565268973453705241") {
+			var hasGame = "CASH";
+			var wantGame = "CASH";
+		}
+        	if (String(channelId) == "565265786051231751" || String(channelId) == "565266456326176779") {
+        		var hasGame = "RL";
+        		var wantGame = "CS";
+        	}
 
         	var discordURL = "'https://discord.gg/tradecentral'";
         	var discordServer = "Trade Central";
