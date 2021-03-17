@@ -421,7 +421,7 @@ function checkHashUpload(messageAuthor, haveItem, wantItem, timeStamp, steamName
 	
 	var hash = crypto.createHash('md5').update(checkHash).digest('hex');
 	if (allHashes.indexOf(hash) !== -1){
-		console.log("Exists ");
+// 		console.log("Exists ");
 		counter2 = counter2 + 1;
 	}
 	else{
@@ -482,7 +482,8 @@ function checkHashUpload(messageAuthor, haveItem, wantItem, timeStamp, steamName
 			myDataRef.push(data);
 		}
 		counter3 = counter3 + 1;
-		console.log("ALL- " + counter1 + " EXISTED- " + counter2 + " ADDED- " + counter3 + "   " + ((new Date() - startTime)/(1000 * 60)).toFixed(2));
+		console.log(counter3 + 'th Entry added. Total Entries: ' + counter1);
+// 		console.log("ALL- " + counter1 + " EXISTED- " + counter2 + " ADDED- " + counter3 + "   " + ((new Date() - startTime)/(1000 * 60)).toFixed(2));
 		messageAuthor = null
 		haveItem = null
 		wantItem = null
