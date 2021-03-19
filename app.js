@@ -17,14 +17,10 @@ var config = {
 	storageBucket: "nodebot-c9481.appspot.com",
 	messagingSenderId: "151256295142"
 };
-
 firebase.initializeApp(config);
-
-function sleep(ms) {
-	return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-
+var gamearray = ['RL-RL','RL-CS','RL-OG','RL-CASH','CS-CS','CS-OG','CS-CASH','OG-OG','OG-CASH','CASH-CASH','Chat']
+for (eachgame in gamearray){ firebase.database().ref(eachgame).remove(); }
+function sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
 var newTime = new Date().getTime()  - 150 * 60000;
 
 
@@ -36,33 +32,6 @@ var newTime = new Date().getTime()  - 150 * 60000;
 // 	snapshot.
 //     // if (trade.TimeStamp)
 // });
-
-
-
-
-
-////////////////////////////////////	DELETE	//////////////////////////////
-// var bigtits = firebase.database().ref("RL-RL");
-// bigtits.once('value', function(snapshot) {
-// 	snapshot.forEach(function(childSnapshot) {
-// 		console.log(1)
-// 		bigtits.child(childSnapshot.key).remove();
-// 	});
-// });
-
-// setInterval(async function () {
-
-// 	var ref = firebase.database().ref('RL-RL');
-// 	var now = Date.now();
-// 	var cutoff = now - 93 * 60 * 60 * 1000;
-// 	var old = ref.orderByChild('TimeStamp').endAt(cutoff).limitToLast(1);
-// 	old.on('child_added', function(snapshot) {
-// 		console.log(1)
-// 		snapshot.ref.remove();
-// 	});
-// console.log("Removed")
-// }, 5 * 1000); 
-
 
 client.once('ready', () => {
 	console.log('Ready!');
@@ -482,7 +451,7 @@ function checkHashUpload(messageAuthor, haveItem, wantItem, timeStamp, steamName
 			myDataRef.push(data);
 		}
 		counter3 = counter3 + 1;
-		console.log(counter3 + ' Entry added. Total Entries: ' + counter1 + '. source: ' + discordServer + ' - ' + hasGame + wantGame);
+		console.log(counter3 + ' Entries added. ' + counter1 + ' Total entries. Source: ' + hasGame + wantGame + ' - ' + discordServer);
 // 		console.log("ALL- " + counter1 + " EXISTED- " + counter2 + " ADDED- " + counter3 + "   " + ((new Date() - startTime)/(1000 * 60)).toFixed(2));
 		messageAuthor = null
 		haveItem = null
@@ -501,23 +470,9 @@ function checkHashUpload(messageAuthor, haveItem, wantItem, timeStamp, steamName
 
 
 setInterval(function () {
-	var pussylips = ['RL-RL','RL-CS','RL-OG','RL-CASH','CS-CS','CS-OG','CS-CASH','OG-OG','OG-CASH','CASH-CASH','Chat']
-	for (dicktip in pussylips){
-		console.log(firebase.database().ref(dicktip).remove())
-		// var bigtits = firebase.database().ref(dicktip);
-		// bigtits.once('value', function(snapshot) {
-		// 	snapshot.forEach(function(childSnapshot) {
-		// 		// var cumshot = childSnapshot.val(); 
-		// 		// cumshot = cumshot.split('▓■⁰≙⁰■▓');
-		// 		// let currentTime = new Date();
-		// 		// let uploadTime = new Date(cumshot[3]);
-		// 		// let hours = Math.floor((currentTime - uploadTime) / (1000 * 60 * 60));
-		// 		let days = Math.floor((currentTime - uploadTime) / (1000 * 60 * 60 * 24));
-		// 		if (days >= 1) {
-		// 			bigtits.child(childSnapshot.key).remove();
-		// 		}
-		// 	});
-		// });
+	var gamearray = ['RL-RL','RL-CS','RL-OG','RL-CASH','CS-CS','CS-OG','CS-CASH','OG-OG','OG-CASH','CASH-CASH','Chat']
+	for (eachgame in gamearray){
+		firebase.database().ref(eachgame).remove();
 	}
 	allHashes = [];
 	console.log("Removed")
