@@ -451,7 +451,7 @@ function checkHashUpload(messageAuthor, haveItem, wantItem, timeStamp, steamName
 			myDataRef.push(data);
 		}
 		counter3 = counter3 + 1;
-		console.log(counter3 + ' Entries added. ' + counter1 + ' Total entries. Source: ' + hasGame + wantGame + ' - ' + discordServer);
+		console.log(counter3 + ' Entries added. ' + counter1 + ' Total entries. Source: ' + hasGame + wantGame + ' - ' + discordServer + ' | ' + messageAuthor);
 // 		console.log("ALL- " + counter1 + " EXISTED- " + counter2 + " ADDED- " + counter3 + "   " + ((new Date() - startTime)/(1000 * 60)).toFixed(2));
 		messageAuthor = null
 		haveItem = null
