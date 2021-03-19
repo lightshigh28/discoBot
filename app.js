@@ -143,15 +143,15 @@ client.on('message', async message => {
         	}
         	if(String(channelId) == "369582811067318282"){
         		var hasGame = "RL";
-        		var wantGame = "Cash";
+        		var wantGame = "CASH";
         	}
         }
 
         //BoSF
         if (String(serverId)  == "593648497530634251") {
-        	var rlrltradearray = ["679885099927732326","679885570482110529","679884758838149134","679884803532783678","679884984202297359","679884909267255337","679885070127202413","679885462227517489","679884829805772886","679884782557200438","681982641200955436"]
+        	// var rlrltradearray = ["679885099927732326","679885570482110529","679884758838149134","679884803532783678","679884984202297359","679884909267255337","679885070127202413","679885462227517489","679884829805772886","679884782557200438","681982641200955436"]
 
-        	if (rlrltradearray.includes(String(channelId))) {
+        	if (String(channelId) == "679885099927732326" || String(channelId) == "679885570482110529" || String(channelId) == "679884758838149134" || String(channelId) == "679884803532783678" || String(channelId) == "679884984202297359" || String(channelId) == "679884909267255337" || String(channelId) == "679885070127202413" || String(channelId) == "679885462227517489" || String(channelId) == "679884829805772886" || String(channelId) == "679884782557200438" || String(channelId) == "681982641200955436") {
         		var hasGame = "RL";
         		var wantGame = "RL";
         	}
@@ -174,7 +174,7 @@ client.on('message', async message => {
         	}
         	if (String(channelId) == "760313065001713734") {
         		var hasGame = "RL";
-        		var wantGame = "Cash";
+        		var wantGame = "CASH";
         	}
 
         	var discordURL = "'https://discord.gg/trade'";
@@ -186,13 +186,13 @@ client.on('message', async message => {
         if (String(serverId)  == "223259649967652887") {
 
         	// var rlrlarray =["565265723258306580","616324781645758497","565265964799623177","565266607295954994","565266288751017996","565268347185266710","565268529683759115","565266294279110676","385973199294169088","565268325613961226","565266895691972637"]
-        	// var rlcsarray =["565265786051231751","565266456326176779"]
+        	// var rlcsarray =["565265786051231751"]
         	// var rlcasharray = ["565266849919402016"]
-        	// var rlogarray =["565265786051231751"]
+        	// var rlogarray =["565266724081893555"]
         	// var cscsarray =["565267476452081754","565267952086286336","565266493177331742","565267629892173855"]
         	// var cscasharray =["565267819323850752"]
         	// var csogarray = ["565266456326176779"]
-        	// var ogogarray =["565269026331295787","565267106304622642","565268477481320469","565267563681153055","565265582283423744"]
+        	// var ogogarray =["565269026331295787","565267106304622642","565268477481320469","565265582283423744"]
         	// var ogcasharray =["565265486271479831"]
 			// var cashcasharray =["565268973453705241"]
 
@@ -200,11 +200,15 @@ client.on('message', async message => {
         		var hasGame = "RL";
         		var wantGame = "RL";
         	}
+        	if (String(channelId) == "565265786051231751") {
+        		var hasGame = "RL";
+        		var wantGame = "CS";
+        	}
         	if (String(channelId) == "565266849919402016") {
         		var hasGame = "RL";
         		var wantGame = "CASH";
         	}
-        	if (String(channelId) == "565265786051231751") {
+        	if (String(channelId) == "565266724081893555") {
         		var hasGame = "RL";
         		var wantGame = "OG";
         	}
@@ -220,7 +224,7 @@ client.on('message', async message => {
         		var hasGame = "CS";
         		var wantGame = "OG";
         	}
-        	if (String(channelId) == "565269026331295787" || String(channelId) == "565267106304622642" || String(channelId) == "565268477481320469" || String(channelId) == "565267563681153055" || String(channelId) == "565265582283423744") {
+        	if (String(channelId) == "565269026331295787" || String(channelId) == "565267106304622642" || String(channelId) == "565268477481320469" || String(channelId) == "565265582283423744") {
         		var hasGame = "OG";
         		var wantGame = "OG";
         	}
@@ -228,14 +232,10 @@ client.on('message', async message => {
         		var hasGame = "OG";
         		var wantGame = "CASH";
         	}
-		if (String(channelId) == "565268973453705241") {
-			var hasGame = "CASH";
-			var wantGame = "CASH";
-		}
-        	if (String(channelId) == "565265786051231751" || String(channelId) == "565266456326176779") {
-        		var hasGame = "RL";
-        		var wantGame = "CS";
-        	}
+			if (String(channelId) == "565268973453705241") {
+				var hasGame = "CASH";
+				var wantGame = "CASH";
+			}
 
         	var discordURL = "'https://discord.gg/tradecentral'";
         	var discordServer = "Trade Central";
@@ -482,7 +482,7 @@ function checkHashUpload(messageAuthor, haveItem, wantItem, timeStamp, steamName
 			myDataRef.push(data);
 		}
 		counter3 = counter3 + 1;
-		console.log(counter3 + 'th Entry added. Total Entries: ' + counter1);
+		console.log(counter3 + ' Entry added. Total Entries: ' + counter1 + '. source: ' + discordServer + ' - ' + hasGame + wantGame);
 // 		console.log("ALL- " + counter1 + " EXISTED- " + counter2 + " ADDED- " + counter3 + "   " + ((new Date() - startTime)/(1000 * 60)).toFixed(2));
 		messageAuthor = null
 		haveItem = null
