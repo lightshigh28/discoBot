@@ -519,5 +519,6 @@ setInterval(function () {
 		// 	});
 		// });
 	}
+	allHashes = [];
 	console.log("Removed")
 }, 24 * 60 * 60 * 1000); 
