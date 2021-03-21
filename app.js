@@ -10,12 +10,14 @@ var counter2 = 0;
 var counter3 = 0;
 // Initialize Firebase
 var config = {
-	apiKey: "AIzaSyD3zo4cObu6beM_2O8iRY-6K5-RdklOJF8",
-	authDomain: "nodebot-c9481.firebaseapp.com",
-	databaseURL: "https://nodebot-c9481-default-rtdb.firebaseio.com",
-	projectId: "nodebot-c9481",
-	storageBucket: "nodebot-c9481.appspot.com",
-	messagingSenderId: "151256295142"
+    apiKey: "AIzaSyCBNKJpY7xY1DRgHeqLpiwsTZh1hEqAS-s",
+    authDomain: "rlcs-2364c.firebaseapp.com",
+    databaseURL: "https://rlcs-2364c-default-rtdb.firebaseio.com",
+    projectId: "rlcs-2364c",
+    storageBucket: "rlcs-2364c.appspot.com",
+    messagingSenderId: "299021271064",
+    appId: "1:299021271064:web:a30617c17c7b0d125a836d",
+    measurementId: "G-BR3NSC5DDF"
 };
 firebase.initializeApp(config);
 var gamearray = ['RL-RL','RL-CS','RL-OG','RL-CASH','CS-CS','CS-OG','CS-CASH','OG-OG','OG-CASH','CASH-CASH','Chat']
@@ -225,7 +227,7 @@ client.on('message', async message => {
 						currentMessage = currentMessage.replace("[h]", "").split("[w]");
 						var haveItem = currentMessage[0].trim();
 						var wantItem = currentMessage[1].trim();
-						checkHashUpload(messageAuthor, haveItem, wantItem, timeStamp, steamName, hasGame, wantGame, discordURL, discordServer, serverLogo)
+						checkHashUpload(messageAuthor, haveItem, wantItem, timeStamp, steamName, hasGame, wantGame, discordURL, discordServer, serverLogo, channelName)
 					} catch {
 						continue;
 					}
@@ -236,7 +238,7 @@ client.on('message', async message => {
 						currentMessage = currentMessage.replace("(h)", "").split("(w)");
 						var haveItem = currentMessage[0].trim();
 						var wantItem = currentMessage[1].trim();
-						checkHashUpload(messageAuthor, haveItem, wantItem, timeStamp, steamName, hasGame, wantGame, discordURL, discordServer, serverLogo)
+						checkHashUpload(messageAuthor, haveItem, wantItem, timeStamp, steamName, hasGame, wantGame, discordURL, discordServer, serverLogo, channelName)
 					} catch {
 						continue;
 					}
@@ -247,7 +249,7 @@ client.on('message', async message => {
 						currentMessage = currentMessage.replace("{h}", "").split("{w}");
 						var haveItem = currentMessage[0].trim();
 						var wantItem = currentMessage[1].trim();
-						checkHashUpload(messageAuthor, haveItem, wantItem, timeStamp, steamName, hasGame, wantGame, discordURL, discordServer, serverLogo)
+						checkHashUpload(messageAuthor, haveItem, wantItem, timeStamp, steamName, hasGame, wantGame, discordURL, discordServer, serverLogo, channelName)
 					} catch {
 						continue;
 					}
@@ -258,7 +260,7 @@ client.on('message', async message => {
 						currentMessage = currentMessage.replace(":BTH:", "").split(":BTW:");
 						var haveItem = currentMessage[0].trim();
 						var wantItem = currentMessage[1].trim();
-						checkHashUpload(messageAuthor, haveItem, wantItem, timeStamp, steamName, hasGame, wantGame, discordURL, discordServer, serverLogo)
+						checkHashUpload(messageAuthor, haveItem, wantItem, timeStamp, steamName, hasGame, wantGame, discordURL, discordServer, serverLogo, channelName)
 					} catch {
 						continue;
 					}
@@ -383,7 +385,7 @@ client.on('message', async message => {
 
 
 
-function checkHashUpload(messageAuthor, haveItem, wantItem, timeStamp, steamName, hasGame, wantGame, discordURL, discordServer, serverLogo){
+function checkHashUpload(messageAuthor, haveItem, wantItem, timeStamp, steamName, hasGame, wantGame, discordURL, discordServer, serverLogo, channelName){
 
 	counter1 = counter1 + 1
 	var checkHash = discordServer + ' ' + haveItem + ' ' + wantItem + ' ' + messageAuthor;
@@ -451,7 +453,7 @@ function checkHashUpload(messageAuthor, haveItem, wantItem, timeStamp, steamName
 			myDataRef.push(data);
 		}
 		counter3 = counter3 + 1;
-		console.log(counter3 + ' Entries added. ' + counter1 + ' Total entries. Source: ' + hasGame + wantGame + ' - ' + discordServer + ' | ' + messageAuthor);
+		console.log(counter3 + ' Added. ' + counter1 + ' Total. Source: ' + messageAuthor + ' | ' + hasGame + wantGame + ' - ' + channelName + ' | ' + discordServer);
 // 		console.log("ALL- " + counter1 + " EXISTED- " + counter2 + " ADDED- " + counter3 + "   " + ((new Date() - startTime)/(1000 * 60)).toFixed(2));
 		messageAuthor = null
 		haveItem = null
