@@ -465,7 +465,7 @@ function checkHashUpload(messageAuthor, haveItem, wantItem, timeStamp, steamName
 		discordURL = null
 		discordServer = null
 		serverLogo = null
-		
+		channelName = null
 	}
 }
 
