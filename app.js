@@ -88,22 +88,16 @@ client.on('message', async message => {
 
         };	
         
-        //Rocket Traders
-        if (String(serverId)  == "562290964639776815") {
+        //Rocket League Central
+        if (String(serverId)  == "763816484010328094") {
 
-        	if (String(channelId) == "797607934170628116") {
+        	if (String(channelId) == "763860575016714250") {
         		var hasGame = "RL";
         		var wantGame = "RL";
         	}
-        	if (String(channelId) == "807792760982732831") {
-        		var hasGame = "RL";
-        		var wantGame = "CS";
-        	}
-
-        	var discordURL = "'https://discord.gg/hn96NMrdQP'";
-        	var discordServer = "Rocket Traders";
-        	var serverLogo = "/static/rockettraderslogo.png"
-
+        	var discordURL = "'https://discord.gg/dxKsVHNKdG'";
+        	var discordServer = "RL Central";
+        	var serverLogo = "/static/rlcentrallogo.png"
         };
 
         //TradeHub
